@@ -9,7 +9,7 @@ var simpleLevelPlan = [
   "      xxxxxxxxxxxxxx  ",
   "                      "
 ];
-
+var score = 0;
 function Level(plan) {
   this.width = plan[0].length;
   this.height = plan.length;
@@ -283,6 +283,8 @@ Level.prototype.playerTouched = function(type, actor) {
   if (type == "lava" && this.status == null) {
     this.status = "lost";
     this.finishDelay = 1;
+	score=0;
+	updateScore();
   } else if (type == "coin") {
     this.actors = this.actors.filter(function(other) {
       return other != actor;
@@ -293,6 +295,8 @@ Level.prototype.playerTouched = function(type, actor) {
       this.status = "won";
       this.finishDelay = 1;
     }
+	score = score + 1;
+	updateScore();
   }
 };
 
@@ -370,3 +374,9 @@ function runGame1(plans, Display) {
   }
   startLevel(3);
 }
+function updateScore(){ 
+document.getElementById("score").innerText=" " + score; 
+} 
+function updateuse(){ 
+document.getElementById("user"); 
+} 

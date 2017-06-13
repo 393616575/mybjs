@@ -3,10 +3,22 @@
 <script src="code/game_levels.js"></script>
 <script src="code/chapter/16_canvas.js"></script>
 
-<body>
+<body >
+  <div>
+	usname:  
+	<SCRIPT LANGUAGE="JavaScript"> 
+		
+        document.write(decodeURIComponent(location.search.substr(5))); 
+
+    </SCRIPT> 
+	
+      Score: <span id="user"> 0</span>  
+    </div>
+
   <script>
+  
     runGame(GAME_LEVELS, CanvasDisplay);
   </script>
   
-  <div id="1">aaa</div>
+  
 </body>
