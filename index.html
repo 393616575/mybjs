@@ -5,20 +5,85 @@
 
 <body >
   <div>
-	usname:  
-	<SCRIPT LANGUAGE="JavaScript"> 
-		
-        document.write(decodeURIComponent(location.search.substr(5))); 
-
-    </SCRIPT> 
+	usname:  <span id="user"> </span> 
 	
-      Score: <span id="user"> 0</span>  
+	<script>
+  document.write(decodeURIComponent(location.search.substr(10))); 
+    function un(){
+	return decodeURIComponent(location.search.substr(10));
+	}
+  </script>
+	 
+	
+      Score: <span id="score"> 0</span>  
     </div>
 
   <script>
-  
+ 
     runGame(GAME_LEVELS, CanvasDisplay);
+	//if(f==1)
+	//Save(decodeURIComponent(location.search.substr(10)))
   </script>
-  
-  
+  　
+<div id="content" style="float:right">
+    <table id="table1">
+        <thead>
+            <tr>
+                <th></th>
+                <th scope="col" abbr="Starter">user</th>
+                <th scope="col" abbr="Medium">icon</th>
+            </tr>
+        </thead>
+        <tbody id= "table-body">
+            <tr>
+                <th scope="row">NO.1</th>
+                <th scope="cols"></th>
+                <th scope="cols"></th>
+            </tr>
+            <tr>
+                <th scope="row">NO.2</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            <tr>
+                <th scope="row">NO.3</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+             <tr>
+                <th scope="row">NO.4</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            <tr>
+                <th scope="row">NO.5</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr> <tr>
+                <th scope="row">NO.6</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            <tr>
+                <th scope="row">NO.7</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+			<tr>
+                <th scope="row">NO.8</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr> <tr>
+                <th scope="row">NO.9</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            <tr>
+                <th scope="row">NO.10</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </body>

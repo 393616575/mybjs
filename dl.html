@@ -4,10 +4,17 @@
   
   
   
-  <form name="fname" action="index.html" METHOD="get" >
-      用户名:<input type="text" id="uname" name=""/><br>
-      <input type="submit" value="登录" />
-    </form>
+  <script> 
+　　function submit() 
+　　{ 
+　　var input1 = document.getElementById("inputid"); 
+	//alert(input1.value.legth);
+　　window.open("index.html?inputStr=" + input1.value);//传入参数 
+　　} 
+　　</script> 
+用户：
+　　<input type = "text" id = "inputid" name = "na"> 
+　　<input type = "button" onclick = "submit()" value = "提交"> 
   
 </body>
 

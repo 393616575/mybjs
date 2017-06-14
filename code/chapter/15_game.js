@@ -9,6 +9,7 @@ var simpleLevelPlan = [
   "      xxxxxxxxxxxxxx  ",
   "                      "
 ];
+
 var score = 0;
 function Level(plan) {
   this.width = plan[0].length;
@@ -283,8 +284,7 @@ Level.prototype.playerTouched = function(type, actor) {
   if (type == "lava" && this.status == null) {
     this.status = "lost";
     this.finishDelay = 1;
-	score=0;
-	updateScore();
+	
   } else if (type == "coin") {
     this.actors = this.actors.filter(function(other) {
       return other != actor;
@@ -346,12 +346,18 @@ function runLevel(level, Display, andThen) {
     }
   });
 }
-
+var f=0;
 function runGame(plans, Display) {
+	
   function startLevel(n) {
     runLevel(new Level(plans[n]), Display, function(status) {
-      if (status == "lost")
-        startLevel(n);
+      if (status == "lost"){
+		  
+		Save();
+		chakan();
+		score=0;
+	updateScore();
+	  startLevel(0);}
       else if (n < plans.length - 1)
         startLevel(n + 1);
       else
@@ -359,24 +365,41 @@ function runGame(plans, Display) {
     });
   }
   startLevel(0);
+ 
 }
 
-function runGame1(plans, Display) {
-  function startLevel(n) {
-    runLevel(new Level(plans[n]), Display, function(status) {
-      if (status == "lost")
-        startLevel(n);
-      else if (n < plans.length - 1)
-        startLevel(n + 1);
-      else
-        console.log("You win!");
-    });
-  }
-  startLevel(3);
-}
+
 function updateScore(){ 
 document.getElementById("score").innerText=" " + score; 
 } 
-function updateuse(){ 
-document.getElementById("user"); 
-} 
+var c=0;
+var shuju=new Array();
+
+function Save(){
+		var sname = un();
+		
+		
+		shuju[c]={"sname":sname,"score":score};
+		c=1+c;
+		
+		localStorage.setItem("paihang",JSON.stringify(shuju));
+		
+	
+}
+function chakan(){
+	var temp;
+	var sj=JSON.parse(localStorage.getItem("paihang"));
+	for(var i=0;i<sj.length;i++){
+		for(var j=0;j<sj.length-1;j++){
+			if(sj[j+1].score>sj[j].score){
+				temp=sj[j];
+				sj[j]=sj[j+1];
+				sj[j+1]=temp;
+				}
+		}
+	}
+	for(var q=0;q<10&&q<sj.length;q++){
+	document.getElementById("table-body").rows[q].cells[1].innerHTML=sj[q].sname;
+	document.getElementById("table-body").rows[q].cells[2].innerHTML=sj[q].score;
+	}
+}
