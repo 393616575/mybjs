@@ -346,15 +346,15 @@ function runLevel(level, Display, andThen) {
     }
   });
 }
-var f=0;
+
 function runGame(plans, Display) {
 	
   function startLevel(n) {
     runLevel(new Level(plans[n]), Display, function(status) {
       if (status == "lost"){
-		  
+		 
 		Save();
-		chakan();
+		 chakan();
 		score=0;
 	updateScore();
 	  startLevel(0);}
@@ -373,22 +373,29 @@ function updateScore(){
 document.getElementById("score").innerText=" " + score; 
 } 
 var c=0;
+
 var shuju=new Array();
 
 function Save(){
 		var sname = un();
+		if(JSON.parse(localStorage.getItem("paihang2"))==undefined)
+			localStorage.setItem("paihang2",JSON.stringify(shuju))
+		c=JSON.parse(localStorage.getItem("paihang2")).length;
 		
 		
+		var quchu = localStorage.getItem("paihang2");	
+		var diershuzu = eval('['+quchu+']');	
+		shuju = diershuzu[0];	
 		shuju[c]={"sname":sname,"score":score};
-		c=1+c;
 		
-		localStorage.setItem("paihang",JSON.stringify(shuju));
+		localStorage.setItem("paihang2",JSON.stringify(shuju));
 		
 	
 }
 function chakan(){
 	var temp;
-	var sj=JSON.parse(localStorage.getItem("paihang"));
+	var sj=JSON.parse(localStorage.getItem("paihang2"));
+	if(sj!=undefined ){
 	for(var i=0;i<sj.length;i++){
 		for(var j=0;j<sj.length-1;j++){
 			if(sj[j+1].score>sj[j].score){
@@ -397,7 +404,7 @@ function chakan(){
 				sj[j+1]=temp;
 				}
 		}
-	}
+	}}
 	for(var q=0;q<10&&q<sj.length;q++){
 	document.getElementById("table-body").rows[q].cells[1].innerHTML=sj[q].sname;
 	document.getElementById("table-body").rows[q].cells[2].innerHTML=sj[q].score;

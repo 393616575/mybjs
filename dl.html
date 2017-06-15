@@ -8,7 +8,9 @@
 　　function submit() 
 　　{ 
 　　var input1 = document.getElementById("inputid"); 
-	//alert(input1.value.legth);
+if(input1.value=="")
+	alert("用户不能为空");
+	else
 　　window.open("index.html?inputStr=" + input1.value);//传入参数 
 　　} 
 　　</script> 
